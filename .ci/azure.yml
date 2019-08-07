@@ -1,0 +1,73 @@
+jobs:
+  - job: linux
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install node'
+      - script: |
+          npm install
+        displayName: 'Npm build'
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: '$(Build.SourcesDirectory)/node_modules/.pkg'
+          includeRootFolder: false
+          archiveType: zip
+          archiveFile: '$(Build.ArtifactStagingDirectory)/frida-bigo-$(Agent.JobName).zip'
+          replaceExistingArchive: true
+        displayName: 'Archive file'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          artifactName: '$(Agent.JobName)-$(Build.BuildNumber)'
+          pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        displayName: 'Publish artifact'
+  - job: macos
+    pool:
+      vmImage: 'macos-latest'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install node'
+      - script: |
+          npm install
+        displayName: 'Npm install'
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: '$(Build.SourcesDirectory)/node_modules/.pkg'
+          includeRootFolder: false
+          archiveType: zip
+          archiveFile: '$(Build.ArtifactStagingDirectory)/frida-bigo-$(Agent.JobName).zip'
+          replaceExistingArchive: true
+        displayName: 'Archive file'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          artifactName: '$(Agent.JobName)-$(Build.BuildNumber)'
+          pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        displayName: 'Publish artifact'
+  - job: windows
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install node'
+      - script: |
+          npm install
+        displayName: 'Npm install'
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: '$(Build.SourcesDirectory)/node_modules/.pkg'
+          includeRootFolder: false
+          archiveType: zip
+          archiveFile: '$(Build.ArtifactStagingDirectory)/frida-bigo-$(Agent.JobName).zip'
+          replaceExistingArchive: true
+        displayName: 'Archive file'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          artifactName: '$(Agent.JobName)-$(Build.BuildNumber)'
+          pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        displayName: 'Publish artifact'

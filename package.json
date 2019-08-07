@@ -20,6 +20,6 @@
     "assets": ["hook/*.js", "frida/*"]
   },
   "scripts": {
-    "postinstall": "pkg . --out-path node_modules/.pkg"
+    "postinstall": "pkg -t node8 . --out-path node_modules/.pkg"
   }
 }
