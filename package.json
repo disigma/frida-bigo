@@ -1,0 +1,25 @@
+{
+  "name": "frida-bigo",
+  "version": "1.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "@types/frida-gum": "^13.1.0",
+    "babel-core": "^6.26.3",
+    "frida": "^12.6.12",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.39.1",
+    "influx": "^5.4.0",
+    "adbkit": "^2.11.1",
+    "bluebird": "latest"
+  },
+  "devDependencies": {
+    "pkg": "^4.4.0"
+  },
+  "bin": "main.js",
+  "pkg": {
+    "assets": ["hook/*.js", "frida/*"]
+  },
+  "scripts": {
+    "postinstall": "pkg . --out-path node_modules/.pkg"
+  }
+}

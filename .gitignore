@@ -1,0 +1,12 @@
+### Node
+# Logs
+npm-debug.log*
+
+# Optional npm cache directory
+.npm
+
+# Dependency directories
+node_modules/
+
+### idea
+.idea/
