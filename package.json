@@ -17,9 +17,10 @@
   },
   "bin": "main.js",
   "pkg": {
-    "assets": ["hook/*.js", "frida/*"]
+    "assets": ["hook/*.js", "frida/*"],
+    "scripts": ["node_modules/frida/build/Release/frida_binding.node"]
   },
   "scripts": {
-    "postinstall": "pkg -t node8 . --out-path node_modules/.pkg"
+    "postinstall": "pkg -t host . --out-path node_modules/.pkg"
   }
 }

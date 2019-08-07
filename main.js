@@ -3,7 +3,7 @@ const frida = require("frida");
 const babel = require("babel-core");
 const influx = require("influx");
 const adb = require("adbkit");
-const Promise = require('bluebird');
+const Promise = require("bluebird");
 
 async function frida_server() {
     if (!process.env.hasOwnProperty("FRIDA_HOOK_DEVICE")) {
@@ -52,8 +52,8 @@ async function frida_server() {
             device.id,
             frida_servers[abi],
             frida_run_path,
-            511
-        ).then(function(transfer) {
+            0o777
+        ).then(function (transfer) {
             return new Promise((resolve) => {
                 transfer.on("end", () => {
                     console.log("[%s] frida-server pushed.", device.id);
